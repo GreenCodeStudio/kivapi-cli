@@ -6,15 +6,17 @@ class Help extends AbstractCommand
 
     public function execute()
     {
-        return "Kivapi - best CMS
+        return <<<HELP
+Kivapi - best CMS
         
 Global commands
-help - shows this informations
+help - shows this information
 create - creates new project
 status - information about system and also project
 
-Project comamnds
+Project commands
 build - build projects with yarn & webpack
-        ";
+        
+HELP;
     }
 }
