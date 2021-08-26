@@ -1,0 +1,13 @@
+{
+    "name": "kivapi/kivapi-cli",
+    "description": "Command line interface for working with Kivapi projects",
+    "type": "cli",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Kivapi\\KivapiCli\\": "src/"
+        }
+    },
+    "require": {},
+    "bin": ["bin/kivapi"]
+}
