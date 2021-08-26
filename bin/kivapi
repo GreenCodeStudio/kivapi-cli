@@ -1,1 +1,3 @@
-php ../src/Core/TextBased.php
+#!/bin/php
+<?php
+include __DIR__.'/../src/Core/TextBased.php';
