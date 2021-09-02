@@ -13,6 +13,7 @@ abstract class AbstractCommandGroup extends AbstractCommand
             if (strtolower($name) == $subcommandName) {
                 $subcommand = new $className;
                 $subcommand->arguments = array_slice($this->arguments, 1);
+                $subcommand->fillParameters();
                 return $subcommand->execute();
             }
         }
