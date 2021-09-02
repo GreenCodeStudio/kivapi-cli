@@ -15,7 +15,7 @@ class Create extends AbstractCommand
 
         system("git clone https://github.com/GreenCodeStudio/kivapi-clean.git $config->name");
         chdir($config->name);
-        $this->unlink_r(".git");
+        rename(".git", sys_get_temp_dir() . "/kivapiTmpDir" . uniqid());//removing could make permissions problems
         exec("git init");
         exec("git add *");
         exec("git commit -m \"init\"");
@@ -57,27 +57,5 @@ class Create extends AbstractCommand
             $config->sqlDatabase = $config->name;
 
         return $config;
-    }
-
-    function unlink_r($from)
-    {
-        if (!file_exists($from)) {
-            return false;
-        }
-        $dir = opendir($from);
-        while (false !== ($file = readdir($dir))) {
-            if ($file == '.' or $file == '..') {
-                continue;
-            }
-
-            if (is_dir($from . DIRECTORY_SEPARATOR . $file)) {
-                $this->unlink_r($from . DIRECTORY_SEPARATOR . $file);
-            } else {
-                unlink($from . DIRECTORY_SEPARATOR . $file);
-            }
-        }
-        rmdir($from);
-        closedir($dir);
-        return true;
     }
 }
