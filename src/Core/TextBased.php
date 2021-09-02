@@ -1,6 +1,15 @@
 <?php
 include_once __DIR__ . '/../../vendor/autoload.php';
+if (is_file("./Core/CLI/initCLI.php")) {
+    include_once "./Core/CLI/initCLI.php";
+}
 $commandName = $_SERVER['argv'][1] ?? 'help';
-$className = "\Kivapi\KivapiCli\Commands\\$commandName";
-$command = new $className(array_slice($_SERVER['argv'], 2));
-print_r($command->execute());
+$commandInfo = (new \Kivapi\KivapiCli\Core\ListCommands())->getByName($commandName);
+if (empty($commandInfo)) {
+    echo "Command not found, run help";
+} else {
+    $className = $commandInfo->className;
+    $command = new $className();
+    $command->arguments = array_slice($_SERVER['argv'], 2);
+    print_r($command->execute());
+}
