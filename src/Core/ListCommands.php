@@ -26,6 +26,9 @@ class ListCommands
         foreach ($this->getCore() as $item) {
             yield $item;
         }
+        foreach ($this->getCorePanel() as $item) {
+            yield $item;
+        }
     }
 
     private function getLocal()
@@ -49,6 +52,22 @@ class ListCommands
                     if (is_file($subdir . "/" . $filename) && str_ends_with(strtolower($filename), "command.php")) {
                         $commandName = substr($filename, 0, -strlen("Command.php"));
                         yield (object)['className' => "\Core\\$dirName\CLI\\{$commandName}Command", 'commandName' => $commandName];
+                    }
+                }
+            }
+        }
+    }
+
+    private function getCorePanel()
+    {
+        $dir = "./Core/Panel";
+        foreach (scandir($dir) as $dirName) {
+            $subdir = $dir . "/" . $dirName . "/CLI";
+            if (is_dir($subdir)) {
+                foreach (scandir($subdir) as $filename) {
+                    if (is_file($subdir . "/" . $filename) && str_ends_with(strtolower($filename), "command.php")) {
+                        $commandName = substr($filename, 0, -strlen("Command.php"));
+                        yield (object)['className' => "\Core\Panel\\$dirName\CLI\\{$commandName}Command", 'commandName' => $commandName];
                     }
                 }
             }

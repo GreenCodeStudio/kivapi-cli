@@ -11,5 +11,6 @@ if (empty($commandInfo)) {
     $className = $commandInfo->className;
     $command = new $className();
     $command->arguments = array_slice($_SERVER['argv'], 2);
+    $command->fillParameters();
     print_r($command->execute());
 }
