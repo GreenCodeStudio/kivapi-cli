@@ -17,6 +17,8 @@ class Create extends AbstractCommand
         chdir($config->name);
         rename(".git", sys_get_temp_dir() . "/kivapiTmpDir" . uniqid());//removing could make permissions problems
         exec("git init");
+        rmdir("Core");
+        exec("git submodule add https://github.com/GreenCodeStudio/kivapi-core.git Core");
         exec("git add *");
         exec("git commit -m \"init\"");
         //https://github.com/GreenCodeStudio/kivapi-clean.git
