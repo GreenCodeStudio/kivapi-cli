@@ -1,5 +1,5 @@
 <?php
-include_once __DIR__ . '/../../../../vendor/autoload.php';
+include_once __DIR__ . '/../../../../autoload.php';
 if (is_file("./Core/CLI/initCLI.php")) {
     include_once "./Core/CLI/initCLI.php";
 }
