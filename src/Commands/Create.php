@@ -6,7 +6,10 @@ use stdClass;
 
 class Create extends AbstractCommand
 {
-
+    public static function shortDescription(): string
+    {
+        return "creates new project";
+    }
     public function execute()
     {
         $config = $this->getConfig();

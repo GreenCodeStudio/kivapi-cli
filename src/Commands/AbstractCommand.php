@@ -11,6 +11,11 @@ abstract class AbstractCommand
 
     public abstract function execute();
 
+    public static function shortDescription(): string
+    {
+        return "(no description)";
+    }
+
     public static function getParameters(): array
     {
         return [];

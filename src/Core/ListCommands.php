@@ -3,6 +3,7 @@
 namespace Kivapi\KivapiCli\Core;
 
 use Kivapi\KivapiCli\Commands\AbstractCommand;
+use ReflectionClass;
 
 class ListCommands
 {
@@ -15,6 +16,15 @@ class ListCommands
                     return $command;
                 }
             }
+        }
+    }
+
+    public function getInfo()
+    {
+        foreach ($this->getRaw() as $item) {
+            if ((new ReflectionClass($item->className))->isAbstract()) continue;
+            $item->shortDescription = call_user_func($item->className . "::shortDescription");
+            yield $item;
         }
     }
 
