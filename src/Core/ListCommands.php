@@ -55,6 +55,7 @@ class ListCommands
     private function getCore()
     {
         $dir = "./Core";
+        if(!is_dir($dir)) return;
         foreach (scandir($dir) as $dirName) {
             $subdir = $dir . "/" . $dirName . "/CLI";
             if (is_dir($subdir)) {
@@ -71,6 +72,7 @@ class ListCommands
     private function getCorePanel()
     {
         $dir = "./Core/Panel";
+        if(!is_dir($dir)) return;
         foreach (scandir($dir) as $dirName) {
             $subdir = $dir . "/" . $dirName . "/CLI";
             if (is_dir($subdir)) {
