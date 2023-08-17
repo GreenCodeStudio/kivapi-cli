@@ -13,7 +13,6 @@ class Create extends AbstractCommand
     public function execute()
     {
         $config = $this->getConfig();
-        $this->writeEnvFile($config);
 
         var_dump($config);
 
@@ -26,6 +25,7 @@ class Create extends AbstractCommand
         exec("git add *");
         exec("git commit -m \"init\"");
         //https://github.com/GreenCodeStudio/kivapi-clean.git
+        $this->writeEnvFile($config);
     }
 
     public function getConfig()
