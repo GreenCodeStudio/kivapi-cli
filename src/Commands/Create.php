@@ -13,6 +13,7 @@ class Create extends AbstractCommand
     public function execute()
     {
         $config = $this->getConfig();
+        $this->writeEnvFile($config);
 
         var_dump($config);
 
@@ -62,5 +63,17 @@ class Create extends AbstractCommand
             $config->sqlDatabase = $config->name;
 
         return $config;
+    }
+
+    private function writeEnvFile($config)
+    {
+        $envContent = "NAME={$config->name}\n";
+        $envContent .= "URL_PREFIX={$config->urlPrefix}\n";
+        $envContent .= "SQL_SERVER={$config->sqlServer}\n";
+        $envContent .= "SQL_USER={$config->sqlUser}\n";
+        $envContent .= "SQL_PASSWORD={$config->sqlPassword}\n";
+        $envContent .= "SQL_DATABASE={$config->sqlDatabase}\n";
+
+        file_put_contents('.env', $envContent);
     }
 }
