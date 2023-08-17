@@ -73,6 +73,8 @@ class Create extends AbstractCommand
         $envContent .= "SQL_USER={$config->sqlUser}\n";
         $envContent .= "SQL_PASSWORD={$config->sqlPassword}\n";
         $envContent .= "SQL_DATABASE={$config->sqlDatabase}\n";
+        $envContent .= "CACHED_CODE=0\n";
+        $envContent .= "DEBUG=true\n";
 
         file_put_contents('.env', $envContent);
     }
