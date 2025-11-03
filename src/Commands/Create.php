@@ -67,14 +67,14 @@ class Create extends AbstractCommand
 
     private function writeEnvFile($config)
     {
-        $envContent = "NAME={$config->name}\n";
-        $envContent .= "URL_PREFIX={$config->urlPrefix}\n";
-        $envContent .= "SQL_SERVER={$config->sqlServer}\n";
-        $envContent .= "SQL_USER={$config->sqlUser}\n";
-        $envContent .= "SQL_PASSWORD={$config->sqlPassword}\n";
-        $envContent .= "SQL_DATABASE={$config->sqlDatabase}\n";
-        $envContent .= "CACHED_CODE=0\n";
-        $envContent .= "DEBUG=true\n";
+        $envContent = "name={$config->name}\n";
+        $envContent .= "urlPrefix={$config->urlPrefix}\n";
+        $envContent .= "db={$config->sqlServer}\n";
+        $envContent .= "dbUser={$config->sqlUser}\n";
+        $envContent .= "dbPass={$config->sqlPassword}\n";
+        $envContent .= "dbSchema={$config->sqlDatabase}\n";
+        $envContent .= "cached_code=0\n";
+        $envContent .= "debug=true\n";
 
         file_put_contents('.env', $envContent);
     }
