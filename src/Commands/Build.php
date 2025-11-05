@@ -13,7 +13,7 @@ class Build extends AbstractCommand
 
     public function execute()
     {
-        $watch = in_array('--watch', $this?->args??[]);
+        $watch = in_array('--watch', $this?->arguments??[]);
         include './Core/Build.php';
     }
 }
